@@ -5,17 +5,12 @@ an implementation of the SHA-256 hashing algorithm in the rust programming langu
 ## Installation/Usage
 > Dependencies: Rust toolchain (cargo), Macroquad API <br/>
 
-- create a new rust project in terminal at desired directory location:
+- clone the repo to any folder :
 ```
-$ cargo new sha-256
-```
-
-- cd into new folder sha-256 :
-```
-$ cd sha-256/
+$ git clone https://github.com/kjohn166/sha-256.git
 ```
 
-- run the project:
+- cd into the folder and run the project:
 ```
 $ cargo run
 ```
