@@ -3,7 +3,7 @@
 an implementation of the SHA-256 hashing algorithm in the rust programming language. <br/>
 
 ## Installation/Usage
-> Dependencies: Macroquad API <br/>
+> Dependencies: Rust toolchain (cargo), Macroquad API <br/>
 
 - create a new rust project in terminal at desired directory location:
 ```
