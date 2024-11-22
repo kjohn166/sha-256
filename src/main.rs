@@ -95,15 +95,13 @@ const K: [u32; 64] = [
 
 pub fn Sha256(mut message: String) -> String { 
     
-    // read message from user
-    
-    //io::stdin().read_line(&mut message).expect("error: unable to read input");
+    // trim new line character
     message = message.trim().to_string();
     
-    //convert message to bytes
+    // convert message to bytes
     let message_bytes = message.as_bytes();
     
-    //print message binary representaion and count number of bits
+    // print message binary representaion and count number of bits
     let mut i: u64 = 0;
     print!("\nmsg in binary: ");
     for byte in message_bytes {
@@ -112,10 +110,10 @@ pub fn Sha256(mut message: String) -> String {
     }
     print!("\n");
     
-    //number of total bits in message = number of bytes * 8
+    // number of total bits in message = number of bytes * 8
     let L: u64 = i * 8;
 
-    // preprocessing string to add padding according to SHA-256 description
+    // preprocessing using addPadding() (defined at the bottom of this file) to add bit padding according to SHA-256 description
     let paddedMessage = addPadding(message_bytes, L);
 
     // initalize mutable hash values provided by SHA-256 outline
@@ -148,6 +146,9 @@ pub fn Sha256(mut message: String) -> String {
         for i in 16..64 {
             let s0 = (w[i-15].rotate_right(7)) ^ (w[i-15].rotate_right(18)) ^ (w[i-15] >> 3);
             let s1 = (w[i-2].rotate_right(17)) ^ (w[i-2].rotate_right(19)) ^ (w[i-2] >> 10);
+
+            // w[i] will be the result of all some additions of 2 previous w values and the intermediate values  s0 and s1 mod 32 (b/c 32 bit words)
+            // we use wrapping_add() to handle 32 bit arithmetic integer overflow
             w[i] = w[i-16].wrapping_add(s0).wrapping_add(w[i-7]).wrapping_add(s1);
         }
 
@@ -161,7 +162,7 @@ pub fn Sha256(mut message: String) -> String {
         let mut g = h6;
         let mut h = h7;
         
-         // this is the main loop for the SHA-256 compression function, goes for 64 rounds
+         // this is the main loop for the SHA-256 compression function, goes for 64 rounds (aka loops)
         for i in 0..64 {
             let S1 = (e.rotate_right(6)) ^ (e.rotate_right(11)) ^ (e.rotate_right(25));
             let ch = (e & f) ^ ((!e) & g);
