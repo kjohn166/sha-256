@@ -1,6 +1,6 @@
 # SHA-256
 ## Description
-an implementation of the SHA-256 hashing algorithm in the rust programming language. <br/>
+an implementation of the SHA-256 hashing algorithm in the rust programming language with a simple graphical interface made with the Macroquad api<br/>
 
 ## Installation/Usage
 > Dependencies: Rust toolchain (cargo), Macroquad API <br/>
